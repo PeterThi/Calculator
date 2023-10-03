@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  additionservice:
+    image: ${DOCKER_REGISTRY-}additionservice
+    build:
+      context: .
+      dockerfile: AdditionService\Dockerfile
+  retractionservice:
+    image: ${DOCKER_REGISTRY-}retractionservice
+    build:
+        context: .
+        dockerfile: RetractionService\Dockerfile
+  calculatorservice:
+    image: ${DOCKER_REGISTRY-}calculatorservice
+    build:
+        context: .
+        dockerfile: \Dockerfile
+    depends_on:
+        - retractionservice
+        - additionservice 
